@@ -1,12 +1,23 @@
 main {
-    font-size: 18px;
+    font-size: 1.25rem;
     font-family: sans-serif;
     max-width: 800px;
     margin: 0 auto;
 }
 .survey-message {
-    font-size: 22px;
+    font-size: 1.5rem;
 }
 .survey-link {
 
+}
+.post-header {
+    display: flex;
+    justify-content: space-between;
+}
+.post-heading {
+    margin: 0;
+}
+.post-time {
+    font-style: italic;
+    font-size: 1rem;
 }
