@@ -1,3 +1,10 @@
+.lang-menu {
+    font-size: 1rem;
+    max-width: 800px;
+    text-align: right;
+    position: absolute;
+    right: 5rem;
+}
 main {
     font-size: 1.25rem;
     font-family: sans-serif;
