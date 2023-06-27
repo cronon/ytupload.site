@@ -20,6 +20,8 @@ main {
 .post-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
 }
 .post-heading {
     margin: 0;
@@ -27,4 +29,12 @@ main {
 .post-time {
     font-style: italic;
     font-size: 1rem;
+}
+.development-log .image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.development-log .image {
+    max-width: 360px;
 }

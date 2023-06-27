@@ -95,8 +95,40 @@ If you want to upload a whole album or playlist, the flow is similar:
 </p>
 </section>
 
-<section>
+<section class="development-log">
     <h2>Development log</h2>
+    <section class="post">
+        <header class="post-header">
+            <h3 class="post-heading">Wireframes</h3>
+            <time class="post-time">2023-06-27</time>
+        </header>
+        <p>The first image is the desktop application, the following are the wireframes I'm going to rely on when building this web-service.</p>
+        <div class="image-gallery">
+            <div class="image-wrapper">
+                <a href="./assets/2023-06/desktop-app.png" target="_blank">
+                    <img class="image" src="./assets/2023-06/small/desktop-app.png" />
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="./assets/2023-06/home-screen.png" target="_blank">
+                    <img class="image" src="./assets/2023-06/small/home-screen.png" />
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="./assets/2023-06/song-upload.png" target="_blank">
+                    <img class="image" src="./assets/2023-06/small/song-upload.png" />
+                </a>
+            </div>
+            <div class="image-wrapper">
+                <a href="./assets/2023-06/album-upload.png" target="_blank">
+                    <img class="image" src="./assets/2023-06/small/album-upload.png" />
+                </a>
+            </div>
+        </div>
+        <p>The desktop screen is very dense. This time I decided to have a separate very light-weight screen when you want to upload only one song.</p>
+        <p>And when you want to upload a whole album there have to be more settings. The descriptions for the song videos and the timecodes in the album video will be automatically generated, therefore I think it'll worth to show the preview.</p>
+        <p>In the desktop app I the descriptions could use placeholders like %playlist% that would denote where the automatically generated part will be inserted. However I think I myself always just added the timecodes in the end and name of the artist before the song title, and it always was fine. Therefore now this functionality won't be configured, and I will see what the users will say during interviews.</p>
+    </section>
     <section>
         <header class="post-header">
             <h3 class="post-heading">Hello world!</h3>
