@@ -9,10 +9,13 @@ https://www.reddit.com/domain/ytupload.site/
 
 a functional prototype
 pick several files, and display the image and single mp3 filename
+pick several files, and display the image and mp3 filenames
+  show picture
+  show time
+  remove songs
+  show timecodes
 
   build and publish
-
-pick several files, and display the image and mp3 filenames
 
 file upload with big drag-n-drop
 
@@ -22,10 +25,13 @@ configuration for album
 configuration for song title
 configuration for playlist
 
-
+add i18n
 
 when I select several files. If it has an image this image appears in the image preview. If it has several images, the last in the list of images appears as the cover image.
 If my selection has mp3's they are added to the list of mp3's
 
 image preview has label of the filename and resolution.
 If resolution is not even the warning is shown when you select it.
+
+I can remove songs from the list of songs. List of songs contains duration
+

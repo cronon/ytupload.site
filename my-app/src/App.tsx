@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import './App.css';
+import {t} from './i18n';
 
 function App() {
 const [loggedIn, setLoggedIn] = useState(true)
@@ -24,6 +25,7 @@ export default App;
 function LoggedSection(){
     const [mp3s, setMp3s] = useState([] as File[]);
     const [image, setImage] = useState<File | null>(null)
+    const imageSrc = useMemo(() => image && URL.createObjectURL(image), [image]);
 
     const onFilesChange = (newFiles: File[]) => {
         const newImage = newFiles.findLast(f => ['image/png', 'image/jpeg'].includes(f.type))
@@ -38,6 +40,7 @@ function LoggedSection(){
         <div className="select-files">
             <input type="file" multiple accept="image/png, image/jpeg, audio/mp3" onChange={(e) => e.target.files && onFilesChange(Array.from(e.target.files))}/>
         </div>
+        {image && <img className="album-cover" src={imageSrc!} alt={t('img.albumCover')} />}
         <pre>
             {image && `image ${image.name}\n`}
             {mp3s.map(mp3 => mp3.name + '\n')}

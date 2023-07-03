@@ -11,3 +11,9 @@ main {
 .select-files {
     border: 5px dashed black;
 }
+
+.album-cover {
+    object-fit: contain;
+    max-width: 512px;
+    max-height: 512px;
+}
