@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-//
-
 function App() {
-const [loggedIn, setLoggedIn] = useState(false)
+const [loggedIn, setLoggedIn] = useState(true)
 
   return (
     <main>
@@ -25,50 +22,25 @@ const [loggedIn, setLoggedIn] = useState(false)
 export default App;
 
 function LoggedSection(){
-    const [files, setFiles] = useState([1]);
-    const hasFiles = !!files.length
-    const cl = 'select-files ' + (hasFiles ? '' : 'select-files-expanded');
+    const [mp3s, setMp3s] = useState([] as File[]);
+    const [image, setImage] = useState<File | null>(null)
+
+    const onFilesChange = (newFiles: File[]) => {
+        const newImage = newFiles.findLast(f => ['image/png', 'image/jpeg'].includes(f.type))
+        if (newImage) {
+            setImage(newImage)
+        }
+        const newAudio = newFiles.filter(f => f.type === 'audio/mpeg')
+        setMp3s(mp3s.concat(newAudio))
+    }
     return <section>
         <h2>Welcome @username</h2>
-        <div className={cl}>
-            <input type="file" />
+        <div className="select-files">
+            <input type="file" multiple accept="image/png, image/jpeg, audio/mp3" onChange={(e) => e.target.files && onFilesChange(Array.from(e.target.files))}/>
         </div>
-        {hasFiles && <EditSection />}
+        <pre>
+            {image && `image ${image.name}\n`}
+            {mp3s.map(mp3 => mp3.name + '\n')}
+        </pre>
     </section>
 }
-function EditSection(){
-    const files = [
-        {filename: 'artist-title.mp3', name: 'artist-title', length: 290},
-        {filename: 'artist-title2.mp3', name: 'artist-title2', length: 350}
-    ]
-    return <div className="edit-section">
-        <div className="playlist">
-            {files.map(f => {
-                return <div>{f.name} {f.length} 3:57</div>
-            })}
-        </div>
-        <div className="cover">
-            <img src="https://storage.googleapis.com/pai-images/0af0bd5b3c414f04bb5ba9173d637577.jpeg" />
-        </div>
-        <div className="album-upload">
-            <div className="album-edit">
-                <input type="text" />
-                <textarea />
-            </div>
-            <div className="album-preview">
-                {files.map(f => {
-                return <div>{f.name} {f.length} 3:57</div>
-                })}
-            </div>
-        </div>
-    </div>
-}
-
-/**
-login with youtube button
-drag-n-drop files. After drag-n-drop show the edit section
-add more files
-
-if one file then only edit song section
-if many files then uploadAlbum
-*/
