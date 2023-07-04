@@ -12,14 +12,15 @@ pick several files, and display the image and single mp3 filename
 pick several files, and display the image and mp3 filenames
   show picture
   show time
-  remove songs
-  show timecodes
+  remove songs / 20m
+  show timecodes / 20m
+  build and publish /20m
 
-  build and publish
+file upload with big drag-n-drop /20m
 
-file upload with big drag-n-drop
-
-beautiful designs
+beautiful designs /1h
+beautiful designs implementation /1h
+create a post /30m
 
 configuration for album
 configuration for song title
@@ -35,3 +36,4 @@ If resolution is not even the warning is shown when you select it.
 
 I can remove songs from the list of songs. List of songs contains duration
 
+3981
