@@ -17,3 +17,6 @@ main {
     max-width: 512px;
     max-height: 512px;
 }
+.loading-indicator {
+    text-decoration: underline;
+}

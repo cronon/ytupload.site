@@ -1,6 +1,8 @@
 import React, {useState, useMemo} from 'react';
 import './App.css';
 import {t} from './i18n';
+import { Mp3List } from './Mp3List';
+import { zip } from 'lodash';
 
 function App() {
 const [loggedIn, setLoggedIn] = useState(true)
@@ -14,15 +16,15 @@ const [loggedIn, setLoggedIn] = useState(true)
       {!loggedIn &&
           <button onClick={() => setLoggedIn(true)}>Login with Youtube</button>
       }
-      {loggedIn && <LoggedSection />}
       </div>
+      {loggedIn && <LoggedSection />}
 
     </main>
   );
 }
 export default App;
 
-interface Mp3File extends File {
+export interface Mp3File extends File {
     /**
      * Duration in seconds
      */
@@ -32,18 +34,20 @@ interface Mp3File extends File {
 function LoggedSection(){
     // when user select files, read their duration and assign them to each mp3
     const [mp3s, setMp3s] = useState([] as Mp3File[]);
-    console.log('mp3s', mp3s)
     const [image, setImage] = useState<File | null>(null)
+    const [loading, setLoading] = useState(false)
     const imageSrc = useMemo(() => image && URL.createObjectURL(image), [image]);
 
-    const onFilesChange = (newFiles: File[]) => {
+    const onFilesChange = async (newFiles: File[]) => {
         const newImage = newFiles.findLast(f => ['image/png', 'image/jpeg'].includes(f.type))
         if (newImage) {
             setImage(newImage)
         }
+        setLoading(true)
         const newAudioFiles = newFiles.filter(f => f.type === 'audio/mpeg');
-        Promise.all(newAudioFiles.map(fileToMp3File))
-        .then(newMp3Files => setMp3s(mp3s.concat(newMp3Files)))
+        const newMp3Files = await Promise.all(newAudioFiles.map(fileToMp3File))
+        setLoading(false)
+        setMp3s(mp3s.concat(newMp3Files))
     }
     return <section>
         <h2>Welcome @username</h2>
@@ -55,31 +59,70 @@ function LoggedSection(){
             {image && `image ${image.name}\n`}
             {mp3s.map(mp3 => mp3.name + '\n')}
         </pre>
+        {loading && <div className="loading-indicator">Reading files...</div>}
         <Mp3List mp3s={mp3s} onChange={newMp3s => setMp3s(newMp3s)} />
+        <Timecodes mp3s={mp3s}/>
     </section>
 }
 
-interface Mp3ListProps {
-    mp3s: Mp3File[],
-    onChange: (newFiles: Mp3File[]) => void
+type Timecode = string;
+export function toTimeCode(duration: number): Timecode  {
+    const rounded = Math.round(duration);
+    const [s, extraM] = splitTimeUnit(rounded);
+    const [m, extraH] = splitTimeUnit(extraM);
+    const h = extraH;
+
+    const ss = tt(s), mm = tt(m), hh = tt(h);
+    return [hh, mm, ss].join(':')
 }
-function Mp3List({mp3s, onChange}: Mp3ListProps) {
-    const removeSong = (index: number) => {
-        const toRemove = [...mp3s];
-        toRemove.splice(index, 1);
-        onChange(toRemove)
+
+// prepend zero if necessary, turn h into hh
+function tt(t: number): string {
+    if (t < 10)
+        return '0' + t;
+    else
+        return t.toString();
+}
+
+/**
+ * 70 returns 10 result, 1 bigger unit
+ */
+export function splitTimeUnit(t: number): [number, number] {
+    const unit = t % 60;
+    const nextUnit = Math.floor((t - unit) / 60);
+    return [unit, nextUnit];
+}
+function noZeroHH(timestamp: string) {
+    if (timestamp.length === 5) return timestamp
+    else if (timestamp.length === 8) {
+        if (timestamp[0] === '0' && timestamp[1] === '0') return timestamp.slice(3);
+        else return timestamp;
     }
-    return <div className="mp3List">
-        {mp3s.map((mp3, index) => {
-            const songName = mp3.name.split('.mp3')[0]!
-            return <div className="song" key={index}>
-            {songName}{'\t'}
-            <span className="song-duration">{mp3.duration}</span>
-            <button onClick={() => removeSong(index)}>x</button>
-            </div>
-        })}
-    </div>
+    else throw new Error(`Cannot remove leading zeros from a time ${timestamp}`);
 }
+
+function last<T>(array: T[]): T | null {
+    if (array.length === 0) return null;
+    else return array[array.length-1]
+}
+function Timecodes({mp3s}: {mp3s: Mp3File[]}) {
+    const durations = mp3s.reduce((prevDurations, mp3) => {
+        const prevDuration = last(prevDurations)
+        if (prevDuration !== null) {
+            return prevDurations.concat(prevDuration + mp3.duration)
+        } else {
+            return [0]
+        }
+    }, [] as number[])
+    const songs = zip(durations, mp3s) as [number, Mp3File][];
+    return <pre>
+        {songs.map(song => {
+            return noZeroHH(toTimeCode(song[0])) + ' ' + song[1]!.name + '\n'
+        })}
+    </pre>
+}
+
+
 /**
  * Mutates File object
  */
