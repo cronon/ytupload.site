@@ -30,19 +30,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>YtUpload - upload music to YouTube</title>
-    <meta name="description" content="YtUploader is an app that adds a cover image to a song or a music album and uploads it to YouTube"/>
+    <title>YtUpload - convert and upload music to YouTube for free</title>
+    <meta name="description" content="YtUpload is an app that adds a cover image to a song or a music album and uploads it to YouTube for free, no watermark"/>
 
-    <link rel="canonical" href="https://cronon12.wixsite.com/ytuploader"/>
+    <link rel="canonical" href="https://ytupload.site"/>
   <meta property="og:title" content="YtUploader | upload mp3 to Youtube"/>
-  <meta property="og:description" content="YtUpload is an app that adds a cover image to a song or a music album and uploads it to YouTube"/>
+  <meta property="og:description" content="YtUpload is an app that adds a cover image to a song or a music album and uploads it to YouTube for free, no watermark"/>
   <meta property="og:url" content="https://ytupload.site/"/>
   <meta property="og:site_name" content="YtUpload"/>
   <meta property="og:type" content="website"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="YtUpload | upload mp3 to Youtube"/>
-  <meta name="twitter:description" content="YtUpload is an app that adds a cover image to a song or a music album and uploads it to YouTube"/>
+  <meta name="twitter:description" content="YtUpload is an app that adds a cover image to a song or a music album and uploads it to YouTube for free, no watermark"/>
   <link rel="icon" type="image/svg" href="favicon.svg">
 
 </head>
@@ -56,7 +56,7 @@
 <p>Free, no watermark. Work is in progress…</p>
 
 <section>
-    <h2>Easy convert and upload songs to YouTube</h2>
+    <h2>Easy and free convert and upload songs to YouTube, no watermark</h2>
     <p>Upload mp3 to YouTube, add an image to music</p>
     <p>
     In a while, here will be a web application that will allow you to upload a song, an album, a mix, or a playlist to YouTube in an effortless way:
@@ -65,7 +65,7 @@
         <li>Pick a cover image (png or jpg) on your device</li>
         <li>Pick a song on your device</li>
         <li>Preview and edit the description that will be added to the YouTube video</li>
-        <li>Click the “Upload” button</li>
+        <li>Click the "Upload" button</li>
         <li>While the video is being uploaded, watch an ad</li>
         <li>YtUpload will convert your image and song to a video file and will upload it to your YouTube channel. The video won't have any watermarks</li>
     </ol>
@@ -83,7 +83,7 @@ If you want to upload a whole album or playlist, the flow is similar:
     <li>YtUpload will automatically generate the description for the album video with timecodes.</li>
     <li>Preview and edit the description that will be added to the YouTube video</li>
     <li>Choose if you want to upload the whole album as a single video with timecodes (chapters), or each song separately, and create a playlist for them. Or both</li>
-    <li>Click the “Upload” button</li>
+    <li>Click the "Upload" button</li>
     <li>Watch an ad, meanwhile</li>
     <li>The YtUpload will convert your image and song to one or several video files and upload them to your YouTube channel. The videos won't have any watermarks</li>
 </ol>
@@ -97,6 +97,18 @@ If you want to upload a whole album or playlist, the flow is similar:
 
 <section class="development-log">
     <h2>Development log</h2>
+    <section class="post">
+        <header class="post-header">
+            <h3 class="post-heading">Soundcloud alternative</h3>
+            <time class="post-time">2023-07-02</time>
+        </header>
+        <p>I looked a little deeper inside myself and found two reasons why I started uploading on Youtube in the first place.</p>
+        <p>Initially, ~10 years ago it was because I used several computers and the songs I wanted to listen to were not available online. So Youtube served me like a cloud storage, which I didn’t mind other people would have access to. Well, I would love other people to listen to the same songs that I appreciate, but it wasn’t the main reason.</p>
+        <p>It became the main reason when I started to create my own music, and I wanted to have an easy way to share it with the world. The most obvious choice was Soundcloud. However, after a while - about 1 year - I hit their 3 hours limit, and that made me release my tracks on Youtube only. Youtube served me as an alternative to SoundCloud.</p>
+        <p>Reddit search for "SoundCloud alternatives" was rather promising, indeed there are people with the same two problems - they look for cloud storage for their music to listen to it on many devices, or they want to share the music they wrote with the world.</p>
+        <p>I believe it better shapes my target audience than "amateur musicians that don’t want to bother with a record label" which was in my imagination until this moment. I replied to a few of those threads on Reddit, and it didn’t feel like I’m spamming. People are asking for something better than SoundCloud and I’m giving it. </p>
+        <p>That was a refreshing thought. I'll try to find more people who are looking for the cloud music storage or look for ways to share their music with audience. Meanwhile, I keep working on a prototype. For it at least to be able to generate timecodes when you select a bunch of mp3's.</p>
+    </section>
     <section class="post">
         <header class="post-header">
             <h3 class="post-heading">Wireframes</h3>
@@ -129,7 +141,7 @@ If you want to upload a whole album or playlist, the flow is similar:
         <p>And when you want to upload a whole album there have to be more settings. The descriptions for the song videos and the timecodes in the album video will be automatically generated, therefore I think it'll worth to show the preview.</p>
         <p>In the desktop app I the descriptions could use placeholders like %playlist% that would denote where the automatically generated part will be inserted. However I think I myself always just added the timecodes in the end and name of the artist before the song title, and it always was fine. Therefore now this functionality won't be configured, and I will see what the users will say during interviews.</p>
     </section>
-    <section>
+    <section class="post">
         <header class="post-header">
             <h3 class="post-heading">Hello world!</h3>
             <time class="post-time">2023-06-25</time>
