@@ -1,5 +1,6 @@
 const i18n = {
-    "img.albumCover": "Album cover"
+    "img.albumCover": "Album cover",
+    'removeSong': 'Remove song',
 } as const
 type I18nKey = keyof typeof i18n;
 

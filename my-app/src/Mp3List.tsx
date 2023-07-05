@@ -1,5 +1,7 @@
 import React from 'react';
 import { Mp3File } from './App';
+import { toTimeCode } from './timeUtils';
+import { t } from './i18n';
 
 interface Mp3ListProps {
     mp3s: Mp3File[];
@@ -11,14 +13,15 @@ export function Mp3List({ mp3s, onChange }: Mp3ListProps) {
         toRemove.splice(index, 1);
         onChange(toRemove);
     };
-    return <div className="mp3List">
+    return <table className="mp3List">
+        <tbody>
         {mp3s.map((mp3, index) => {
-            const songName = mp3.name.split('.mp3')[0]!;
-            return <div className="song" key={index}>
-                {songName}{'\t'}
-                <span className="song-duration">{mp3.duration}</span>
-                <button onClick={() => removeSong(index)}>x</button>
-            </div>;
+            return <tr className="song" key={index}>
+                <td>{mp3.name}</td>
+                <td>{toTimeCode(mp3.duration)}</td>
+                <td><button onClick={() => removeSong(index)} title={t('removeSong')}>x</button></td>
+            </tr>;
         })}
-    </div>;
+        </tbody>
+    </table>;
 }

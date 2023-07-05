@@ -20,3 +20,7 @@ main {
 .loading-indicator {
     text-decoration: underline;
 }
+.timecodes {
+    width: 100%;
+    overflow-x: auto;
+}

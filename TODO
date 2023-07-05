@@ -12,8 +12,9 @@ pick several files, and display the image and single mp3 filename
 pick several files, and display the image and mp3 filenames
   show picture
   show time
-  remove songs / 20m
-  show timecodes / 20m
+  remove songs / 20m/5m
+  loading indicator 0 / 10m
+  show timecodes / 20m / 23m
   build and publish /20m
 
 file upload with big drag-n-drop /20m
