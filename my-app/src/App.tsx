@@ -51,15 +51,17 @@ function LoggedSection(){
         setMp3s(mp3s.concat(newMp3Files))
     }
     return <section>
-        <h2>Welcome @username</h2>
+        {/*<h2>Welcome @username</h2>*/}
+        <a href="../index.html">Back to the Home page</a>
         <p>Pick mp3 and cover image files:</p>
         <div className="select-files">
-            <input type="file" multiple accept="image/png, image/jpeg, audio/mp3" onChange={(e) => e.target.files && onFilesChange(Array.from(e.target.files))}/>
+            <input type="file" multiple accept="audio/mp3" onChange={(e) => e.target.files && onFilesChange(Array.from(e.target.files))}/>
+            {/*<input type="file" multiple accept="image/png, image/jpeg, audio/mp3" onChange={(e) => e.target.files && onFilesChange(Array.from(e.target.files))}/>*/}
         </div>
-        {image && <img className="album-cover" src={imageSrc!} alt={t('img.albumCover')} />}
+{/*        {image && <img className="album-cover" src={imageSrc!} alt={t('img.albumCover')} />}
         <pre>
             {image && `image ${image.name}\n`}
-        </pre>
+        </pre>*/}
         {loading && <div className="loading-indicator">Reading files...</div>}
         <p>Mp3 files:</p>
         <Mp3List mp3s={mp3s} onChange={newMp3s => setMp3s(newMp3s)} />
