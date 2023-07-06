@@ -1,8 +1,7 @@
 import React, {useState, useMemo} from 'react';
 import './App.css';
-import {t} from './i18n';
 import { Mp3List } from './Mp3List';
-import { last, zip } from 'lodash';
+import { zip } from 'lodash';
 import { noZeroHH, toTimeCode } from './timeUtils';
 
 function App() {
@@ -72,14 +71,13 @@ function LoggedSection(){
 
 
 function Timecodes({mp3s}: {mp3s: Mp3File[]}) {
-    const durations = mp3s.reduce((prevDurations, mp3) => {
-        const prevDuration = last(prevDurations)
-        if (prevDuration !== undefined) {
-            return prevDurations.concat(prevDuration + mp3.duration)
-        } else {
-            return [0]
+    const durations = mp3s.reduce((acc, mp3) => {
+        return {
+            durations: acc.durations.concat(acc.prevDuration),
+            prevDuration: mp3.duration + acc.prevDuration
         }
-    }, [] as number[])
+    }, {durations: [] as number[], prevDuration: 0}).durations;
+
     const songs = zip(durations, mp3s) as [number, Mp3File][];
     return <pre className="timecodes">
         {songs.map(song => {
