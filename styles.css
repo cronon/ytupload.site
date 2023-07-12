@@ -11,6 +11,12 @@ main {
     max-width: 800px;
     margin: 0 auto;
 }
+.main-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .survey-message {
     font-size: 1.5rem;
 }
